@@ -19,7 +19,7 @@ async def buscar(
             JOIN municipio m ON m.id_municipio = a.id_municipio
             WHERE a.id_municipio = :id_municipio
             ORDER BY a.apellido, a.nombre
-            LIMIT 20
+            LIMIT 30
         """),
         {"id_municipio": id_municipio},
     )
