@@ -1,3 +1,7 @@
+###############################################################################
+# Esta linea la creé utilizando el editor micro dentro del contenedor
+# Actualización, marzo 23 de 2026
+###############################################################################
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -5,36 +9,41 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from routers import afiliados
-import subprocess, os
 
 app = FastAPI(
-    title='EPS API - Sector Subsidiado',
-    version='1.0.0',
-    description='API de elegibilidad y autorizaciones medicas',
-    docs_url='/docs',
+    title="EPS API - Sector Subsidiado - Ejercicio Académico Curso",
+    version="1.0.0",
+    description="API de elegibilidad y autorizaciones medicas, prácticas de Git hub y herramientas adicionales",
+    docs_url="/docs",
     redoc_url=None,
 )
 
-app.add_middleware(CORSMiddleware,
-    allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
+app.add_middleware(
+    CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
+)
 
 app.include_router(afiliados.router)
-app.mount('/static', StaticFiles(directory='static'), name='static')
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get('/health')
+
+@app.get("/health")
 async def health():
-    return {'status': 'ok', 'version': '1.0.0'}
+    return {"status": "ok", "version": "1.0.0"}
+
 
 """
 Este decorador fue necesario ya que hubo que instalar redoc localmente
 """
-@app.get('/redoc', include_in_schema=False)
+
+
+@app.get("/redoc", include_in_schema=False)
 async def redoc_html():
-    return HTMLResponse(content="""
+    return HTMLResponse(
+        content="""
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EPS API - Documentacion</title>
+    <title>EPS API - Documentación de la aplicación</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>body { margin: 0; padding: 0; }</style>
@@ -44,4 +53,5 @@ async def redoc_html():
     <script src="/static/redoc.standalone.js"></script>
   </body>
 </html>
-""")
+"""
+    )
