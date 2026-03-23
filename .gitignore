@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.pyc
+.pre-commit-config.yaml
+
+# Entornos virtuales
+venv/
+.env
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.log
