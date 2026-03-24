@@ -1,7 +1,6 @@
 ###############################################################################
 # Esta linea la creé utilizando el editor micro dentro del contenedor
 # Actualización, marzo 23 de 2026
-# nueva actualización !!!!!!
 ###############################################################################
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,7 +8,7 @@ from fastapi.responses import HTMLResponse
 
 from fastapi.staticfiles import StaticFiles
 
-from routers import afiliados
+from routers import afiliados, municipios
 
 app = FastAPI(
     title="EPS API - Sector Subsidiado - Ejercicio Académico Curso",
@@ -24,6 +23,7 @@ app.add_middleware(
 )
 
 app.include_router(afiliados.router)
+app.include_router(municipios.router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
